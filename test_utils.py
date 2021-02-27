@@ -10,28 +10,26 @@ Tests for all functions in utils.py
 
 from hypothesis import strategies as st
 from hypothesis import given
-from hypothesis.extra.numpy import arrays
 from utils import *
-import numpy as np
 
 
 @given(
-    to_sort=arrays(
-        shape=st.integers(min_value=0, max_value=50),
-        dtype=int,
+    to_sort=st.lists(
+        min_size=0,
+        max_size=50,
         unique=False,
         elements=st.integers(min_value=-50, max_value=50),
     )
 )
 def test_sort_array(to_sort):
     """Tests the sort_array function, in utils.py"""
-    assert np.all(sort_array(to_sort) == np.sort(to_sort))
+    assert sort_array(to_sort) == sorted(to_sort)
 
 
 @given(
-    to_sort=arrays(
-        shape=st.integers(min_value=0, max_value=50),
-        dtype=int,
+    to_sort=st.lists(
+        min_size=0,
+        max_size=50,
         unique=False,
         elements=st.integers(min_value=-50, max_value=50),
     ),
@@ -39,9 +37,10 @@ def test_sort_array(to_sort):
 )
 def test_binary_search(to_sort, x):
     """Tests the binary_search function, in utils.py"""
-    sorted = np.sort(to_sort)
 
-    if x in sorted:
-        assert binary_search(sorted, x) < len(sorted)
+    sorted_list = sorted(to_sort)
+
+    if x in sorted_list:
+        assert binary_search(sorted_list, x) <= len(sorted_list)
     else:
-        assert binary_search(sorted, x) == -1
+        assert binary_search(sorted_list, x) == -1
