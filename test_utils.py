@@ -9,6 +9,7 @@
 """
 
 from hypothesis import strategies as st
+from hypothesis import given
 from hypothesis.extra.numpy import arrays
 from utils import *
 import numpy as np
@@ -16,15 +17,15 @@ import numpy as np
 
 @given(
     to_sort=arrays(
-        shape=(10,),
+        shape=st.integers(min_value=0, max_value=50),
         dtype=int,
-        unique=True,
+        unique=False,
         elements=st.integers(min_value=-50, max_value=50),
     )
 )
 def test_sort_array(to_sort):
     """Tests the sort_array function, in utils.py"""
-    assert sort_array(to_sort) == np.sort(to_sort)
+    assert np.all(sort_array(to_sort) == np.sort(to_sort))
 
 
 def test_binary_search():

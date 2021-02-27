@@ -42,6 +42,9 @@ def sort_array(to_sort: np.ndarray) -> np.ndarray:
             # Move to the next slot
             k += 1
 
+        return to_sort
+    return to_sort
+
 
 def binary_search():
     pass
