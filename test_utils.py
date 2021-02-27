@@ -4,7 +4,7 @@
 
 """
 
-
+Tests for all functions in utils.py
 
 """
 
@@ -28,11 +28,20 @@ def test_sort_array(to_sort):
     assert np.all(sort_array(to_sort) == np.sort(to_sort))
 
 
-def test_binary_search():
+@given(
+    to_sort=arrays(
+        shape=st.integers(min_value=0, max_value=50),
+        dtype=int,
+        unique=False,
+        elements=st.integers(min_value=-50, max_value=50),
+    ),
+    x=st.integers(min_value=-50, max_value=50),
+)
+def test_binary_search(to_sort, x):
     """Tests the binary_search function, in utils.py"""
-    pass
+    sorted = np.sort(to_sort)
 
-
-def test_retrieve_element():
-    """Tests the retrieve_element function, in utils.py"""
-    pass
+    if x in sorted:
+        assert binary_search(sorted, x) < len(sorted)
+    else:
+        assert binary_search(sorted, x) == -1

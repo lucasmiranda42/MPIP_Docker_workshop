@@ -4,7 +4,7 @@
 
 """
 
-
+Auxiliary functions for manin.py
 
 """
 
@@ -46,8 +46,38 @@ def sort_array(to_sort: np.ndarray) -> np.ndarray:
     return to_sort
 
 
-def binary_search():
-    pass
+def binary_search(sorted_array, x, low=0, high=None):
+    """Searches for an element in a sorted array in O(log(n)) time"""
+
+    if high is None:
+        high = len(sorted_array)
+
+    # Check base case
+    if high >= low:
+
+        try:
+
+            mid = (high + low) // 2
+
+            # If element is present at the middle itself
+            if sorted_array[mid] == x:
+                return mid
+
+            # If element is smaller than mid, then it can only
+            # be present in left subarray
+            elif sorted_array[mid] > x:
+                return binary_search(sorted_array, x, low, mid - 1)
+
+            # Else the element can only be present in right subarray
+            else:
+                return binary_search(sorted_array, x, mid + 1, high)
+
+        except IndexError:
+            return -1
+
+    else:
+        # Element is not present in the array
+        return -1
 
 
 def retrieve_element():
