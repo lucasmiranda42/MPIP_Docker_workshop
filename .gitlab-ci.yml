@@ -1,0 +1,17 @@
+stages:
+  - test
+
+test:
+  stage: test
+
+  image:
+    name: lucasmiranda42/mpip_docker_workshop
+
+  script:
+    - coverage run --source . -m pytest
+    - coverage report -m --include utils.py
+    - coverage xml -o mpip_workshop_cov.xml
+
+  artifacts:
+    reports:
+      cobertura: mpip_workshop_cov.xml
