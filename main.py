@@ -16,10 +16,12 @@ sorted = sort_array(example_array)
 
 print("initial array:", example_array)
 
-x = np.random.uniform(-10, 10, 1).astype(int)[0]
+for _ in range(10):
 
-print(
-    "The randomly generated value {} is{} in the array".format(
-        x, ("" if binary_search(sorted, x) != -1 else " not")
+    x = np.random.uniform(-10, 10, 1).astype(int)[0]
+
+    print(
+        "The randomly generated value {} is{} in the array".format(
+            x, ("" if binary_search(sorted, x) != -1 else " not")
+        )
     )
-)
