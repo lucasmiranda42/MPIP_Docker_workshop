@@ -8,4 +8,4 @@ This repo is intended for:
 
 1) Explaining the basics of containarization and Docker
 2) Explaining the basics of Continuous Integration
-3) Combine the two to test a simple python project upon pushing to a git repository
+3) Combine the two to test a simple python project upon pushing to a remote git repository
